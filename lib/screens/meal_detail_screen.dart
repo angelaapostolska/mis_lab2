@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/meal_detail.dart';
 import '../services/api_service.dart';
+import '../widgets/favorite_button.dart';
 
 class MealDetailScreen extends StatefulWidget {
   final String mealId;
@@ -64,6 +65,12 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
       appBar: AppBar(
         title: Text(widget.mealName),
         backgroundColor: Colors.orange,
+        actions: [
+          FavoriteButton(
+            mealId: widget.mealId,
+            size: 28.0,
+          ),
+        ],
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
