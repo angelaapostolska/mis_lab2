@@ -3,7 +3,6 @@ import '../models/category.dart';
 import '../services/api_service.dart';
 import 'meals_screen.dart';
 import 'meal_detail_screen.dart';
-import 'favorites_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -100,19 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: _showRandomRecipe,
             tooltip: 'Random Recipe',
             icon: const Icon(Icons.shuffle),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FavoritesScreen(),
-                ),
-              );
-            },
-            tooltip: 'Favorites',
-            icon: const Icon(Icons.favorite),
-          ),
+          )
         ],
       ),
       body: Column(

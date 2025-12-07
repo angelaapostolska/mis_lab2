@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../models/meal.dart';
 import '../services/api_service.dart';
 import 'meal_detail_screen.dart';
-import '../widgets/favorite_button.dart';
 
 
 class MealsScreen extends StatefulWidget {
@@ -135,55 +134,39 @@ class _MealsScreenState extends State<MealsScreen> {
           );
         },
         borderRadius: BorderRadius.circular(12),
-        child: Stack(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(12),
-                    ),
-                    child: Image.network(
-                      meal.thumbnail,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          color: Colors.grey[300],
-                          child: const Icon(Icons.error, size: 50),
-                        );
-                      },
-                    ),
-                  ),
+            // Meal image
+            Expanded(
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(12),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    meal.name,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
-                  ),
+                child: Image.network(
+                  meal.thumbnail,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: Colors.grey[300],
+                      child: const Icon(Icons.error, size: 50),
+                    );
+                  },
                 ),
-              ],
+              ),
             ),
-            Positioned(
-              top: 4,
-              right: 4,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.9),
-                  shape: BoxShape.circle,
+            // Meal name
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                meal.name,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
                 ),
-                child: FavoriteButton(
-                  mealId: meal.id,
-                  size: 20,
-                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
               ),
             ),
           ],
@@ -191,5 +174,4 @@ class _MealsScreenState extends State<MealsScreen> {
       ),
     );
   }
-
 }
